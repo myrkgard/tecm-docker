@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+    tecmapi:
+        image: tecm
+        environment:
+            TECM_DB_BASEURL: "jdbc:mysql://tecmdb/"
+            TECM_DB_USER: root
+            TECM_DB_PASSWORD: password
+        ports:
+            - 8080:8080
+        depends_on:
+            - tecmdb
+
+    tecmdb:
+        image: mysql:latest
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+
+
+
